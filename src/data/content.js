@@ -4,6 +4,7 @@ export const translations = {
             logo: "Portfolio",
             home: "Home",
             about: "About",
+            education: "Education",
             skills: "Skills",
             projects: "Projects",
             contact: "Contact"
@@ -16,6 +17,21 @@ export const translations = {
         about: {
             title: "About Me",
             description: "I'm a passionate junior developer looking for my first role. I love learning new technologies and building things that live on the internet. When I'm not coding, I'm probably reading or gaming.",
+        },
+        education: {
+            title: "Education",
+            items: [
+                {
+                    degree: "Computer Science Degree",
+                    institution: "University of Technology",
+                    period: "2020 - 2024"
+                },
+                {
+                    degree: "Full Stack Web Development Bootcamp",
+                    institution: "Tech Academy",
+                    period: "2024"
+                }
+            ]
         },
         skills: {
             title: "Skills",
@@ -30,9 +46,14 @@ export const translations = {
         },
         projects: {
             title: "Projects",
+            searchPlaceholder: "Search projects by name or language...",
             emptyState: "Currently working on some exciting projects. Check back soon!",
             items: [
-                // Leave this empty to show the "Coming Soon" state
+                "Verschlingendenacht/blog",
+                "facebook/react",
+                "vuejs/vue",
+                "twbs/bootstrap",
+                "airbnb/javascript"
             ]
         },
         contact: {
@@ -51,6 +72,7 @@ export const translations = {
             logo: "Portafolio",
             home: "Inicio",
             about: "Sobre Mí",
+            education: "Educación",
             skills: "Habilidades",
             projects: "Proyectos",
             contact: "Contacto"
@@ -63,6 +85,21 @@ export const translations = {
         about: {
             title: "Sobre Mí",
             description: "Soy un desarrollador junior apasionado buscando mi primer rol. Me encanta aprender nuevas tecnologías y construir cosas que viven en internet. Cuando no estoy programando, probablemente estoy leyendo o jugando.",
+        },
+        education: {
+            title: "Educación",
+            items: [
+                {
+                    degree: "Grado en Ciencias de la Computación",
+                    institution: "Universidad Tecnológica",
+                    period: "2020 - 2024"
+                },
+                {
+                    degree: "Bootcamp de Desarrollo Web Full Stack",
+                    institution: "Tech Academy",
+                    period: "2024"
+                }
+            ]
         },
         skills: {
             title: "Habilidades",
@@ -77,9 +114,14 @@ export const translations = {
         },
         projects: {
             title: "Proyectos",
+            searchPlaceholder: "Buscar proyectos por nombre o lenguaje...",
             emptyState: "Actualmente trabajando en proyectos emocionantes. ¡Vuelve pronto!",
             items: [
-                // Dejar vacío para mostrar el estado "Próximamente"
+                "Verschlingendenacht/blog",
+                "facebook/react",
+                "vuejs/vue",
+                "twbs/bootstrap",
+                "airbnb/javascript"
             ]
         },
         contact: {

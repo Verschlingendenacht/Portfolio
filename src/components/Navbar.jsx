@@ -10,6 +10,7 @@ const Navbar = () => {
             <ul style={styles.links}>
                 <li><a href="#hero" style={styles.link}>{navbar.home}</a></li>
                 <li><a href="#about" style={styles.link}>{navbar.about}</a></li>
+                <li><a href="#education" style={styles.link}>{navbar.education}</a></li>
                 <li><a href="#skills" style={styles.link}>{navbar.skills}</a></li>
                 <li><a href="#projects" style={styles.link}>{navbar.projects}</a></li>
                 <li><a href="#contact" style={styles.link}>{navbar.contact}</a></li>
