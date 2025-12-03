@@ -1,17 +1,21 @@
 import { useState, useEffect } from 'react';
 
-const Typewriter = ({ text, speed = 100, delay = 500, className = '' }) => {
+const Typewriter = ({ text, speed = 100, delay = 500, className = '', onComplete }) => {
     const [displayText, setDisplayText] = useState('');
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isStarted, setIsStarted] = useState(false);
 
     useEffect(() => {
+        setDisplayText('');
+        setCurrentIndex(0);
+        setIsStarted(false);
+
         const timeout = setTimeout(() => {
             setIsStarted(true);
         }, delay);
 
         return () => clearTimeout(timeout);
-    }, [delay]);
+    }, [text, delay]);
 
     useEffect(() => {
         if (!isStarted) return;
@@ -23,8 +27,10 @@ const Typewriter = ({ text, speed = 100, delay = 500, className = '' }) => {
             }, speed);
 
             return () => clearTimeout(timeout);
+        } else if (onComplete) {
+            onComplete();
         }
-    }, [currentIndex, isStarted, speed, text]);
+    }, [currentIndex, isStarted, speed, text, onComplete]);
 
     return (
         <span className={`typewriter ${className}`}>

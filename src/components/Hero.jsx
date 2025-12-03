@@ -1,17 +1,36 @@
+import { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import Typewriter from './Typewriter';
 
 const Hero = () => {
     const { content } = useLanguage();
     const { hero } = content;
+    const [showContent, setShowContent] = useState(false);
+
+    // Reset showContent when language changes to replay animation
+    useEffect(() => {
+        setShowContent(false);
+    }, [content]);
+
     return (
         <section id="hero" style={styles.section}>
             <div style={styles.content}>
                 <h1 style={styles.title}>
-                    <Typewriter text={hero.title} speed={100} delay={500} />
+                    <Typewriter
+                        text={hero.title}
+                        speed={100}
+                        delay={500}
+                        onComplete={() => setShowContent(true)}
+                    />
                 </h1>
-                <h2 style={styles.subtitle}>{hero.subtitle}</h2>
-                <p style={styles.description}>{hero.description}</p>
+                <div style={{
+                    ...styles.fadeContent,
+                    opacity: showContent ? 1 : 0,
+                    transform: showContent ? 'translateY(0)' : 'translateY(20px)',
+                }}>
+                    <h2 style={styles.subtitle}>{hero.subtitle}</h2>
+                    <p style={styles.description}>{hero.description}</p>
+                </div>
             </div>
         </section>
     );
@@ -47,6 +66,10 @@ const styles = {
     description: {
         fontSize: '1.2rem',
         lineHeight: '1.6',
+    },
+    fadeContent: {
+        transition: 'opacity 1s ease, transform 1s ease',
+        willChange: 'opacity, transform',
     }
 };
 

@@ -30,6 +30,7 @@ const styles = {
         borderRadius: '16px',
         border: '1px solid rgba(255, 255, 255, 0.1)',
         maxWidth: '1200px',
+        animation: 'border-blink 3s infinite ease-in-out',
     },
     container: {
         maxWidth: '100%',
