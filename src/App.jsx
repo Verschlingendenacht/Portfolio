@@ -9,11 +9,17 @@ import Footer from './components/Footer';
 import ParticleBackground from './components/ParticleBackground';
 import CursorFollower from './components/CursorFollower';
 import ClickEffect from './components/ClickEffect';
+import ScrollReveal from './components/ScrollReveal';
 
+import { useEffect } from 'react';
 import { LanguageProvider } from './context/LanguageContext';
 import LanguageToggle from './components/LanguageToggle';
 
 function App() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <LanguageProvider>
             <div className="app">
@@ -22,11 +28,11 @@ function App() {
                 <ParticleBackground />
                 <Navbar />
                 <Hero />
-                <About />
-                <Skills />
-                <Education />
-                <Projects />
-                <Contact />
+                <ScrollReveal><About /></ScrollReveal>
+                <ScrollReveal><Skills /></ScrollReveal>
+                <ScrollReveal><Education /></ScrollReveal>
+                <ScrollReveal><Projects /></ScrollReveal>
+                <ScrollReveal><Contact /></ScrollReveal>
                 <Footer />
                 <LanguageToggle />
             </div>

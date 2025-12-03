@@ -1,4 +1,5 @@
 import { useLanguage } from '../context/LanguageContext';
+import Typewriter from './Typewriter';
 
 const Hero = () => {
     const { content } = useLanguage();
@@ -6,7 +7,9 @@ const Hero = () => {
     return (
         <section id="hero" style={styles.section}>
             <div style={styles.content}>
-                <h1 style={styles.title}>{hero.title}</h1>
+                <h1 style={styles.title}>
+                    <Typewriter text={hero.title} speed={100} delay={500} />
+                </h1>
                 <h2 style={styles.subtitle}>{hero.subtitle}</h2>
                 <p style={styles.description}>{hero.description}</p>
             </div>
