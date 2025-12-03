@@ -32,6 +32,7 @@ const styles = {
         position: 'sticky',
         top: 0,
         zIndex: 10000,
+        animation: 'slide-down 0.8s ease-out',
     },
     logo: {
         fontSize: '1.5rem',
