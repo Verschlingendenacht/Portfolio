@@ -39,11 +39,11 @@ const Projects = () => {
                 <FocusCard style={styles.card}>
                     <div style={styles.searchContainer}>
                         <input
+                            className="search-input"
                             type="text"
                             placeholder={projects.searchPlaceholder}
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            style={styles.searchInput}
                         />
                     </div>
 
@@ -129,19 +129,7 @@ const styles = {
         display: 'flex',
         justifyContent: 'center',
     },
-    searchInput: {
-        width: '100%',
-        maxWidth: '500px',
-        padding: '1rem 1.5rem',
-        borderRadius: '30px',
-        border: '1px solid rgba(255, 255, 255, 0.1)',
-        backgroundColor: 'rgba(255, 255, 255, 0.1)',
-        color: '#fff',
-        fontSize: '1rem',
-        outline: 'none',
-        backdropFilter: 'blur(5px)',
-        transition: 'background-color 0.3s, box-shadow 0.3s',
-    },
+    // searchInput style moved to index.css for animation
     loading: {
         color: '#aaa',
         fontSize: '1.2rem',

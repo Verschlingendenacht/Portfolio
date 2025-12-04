@@ -31,6 +31,7 @@ const CursorFollower = () => {
             const clickable = target.closest('a') ||
                 target.closest('button') ||
                 target.closest('.clickable') ||
+                target.closest('.search-input') ||
                 (window.getComputedStyle(target).cursor === 'pointer');
 
             if (clickable) {
@@ -86,6 +87,7 @@ const CursorFollower = () => {
 
                 if (cursorRingRef.current) {
                     cursorRingRef.current.classList.add('active');
+
                     if (clickable.closest('nav')) {
                         cursorRingRef.current.style.zIndex = '10001';
                     } else {

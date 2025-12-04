@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import MagneticButton from './MagneticButton';
 
 const Navbar = () => {
     const { content } = useLanguage();
@@ -10,31 +11,24 @@ const Navbar = () => {
         const handleScroll = () => {
             const sections = ['hero', 'about', 'skills', 'education', 'projects', 'contact'];
 
-            // Find the section that is currently most visible on screen
-            // or the one that has just passed the top of the viewport
             let current = '';
 
             for (const section of sections) {
                 const element = document.getElementById(section);
                 if (element) {
                     const rect = element.getBoundingClientRect();
-                    // If the top of the section is within the top third of the viewport
-                    // or if the bottom is still in view
                     if (rect.top <= window.innerHeight / 3) {
                         current = section;
                     }
                 }
             }
 
-            // Special case: if at the very bottom of page, highlight contact
             if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
                 current = 'contact';
             }
 
             setActiveSection(current);
         };
-
-
 
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
@@ -45,7 +39,6 @@ const Navbar = () => {
         const element = document.getElementById(targetId);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
-            // Optional: update URL hash without jumping
             window.history.pushState(null, '', `#${targetId}`);
         }
     };
@@ -55,58 +48,70 @@ const Navbar = () => {
             <div style={styles.logo}>{navbar.logo}</div>
             <ul style={styles.links}>
                 <li>
-                    <a
-                        href="#hero"
-                        onClick={(e) => handleNavClick(e, 'hero')}
-                        style={{ ...styles.link, ...(activeSection === 'hero' ? styles.activeLink : {}) }}
-                    >
-                        {navbar.home}
-                    </a>
+                    <MagneticButton>
+                        <a
+                            href="#hero"
+                            onClick={(e) => handleNavClick(e, 'hero')}
+                            style={{ ...styles.link, ...(activeSection === 'hero' ? styles.activeLink : {}) }}
+                        >
+                            {navbar.home}
+                        </a>
+                    </MagneticButton>
                 </li>
                 <li>
-                    <a
-                        href="#about"
-                        onClick={(e) => handleNavClick(e, 'about')}
-                        style={{ ...styles.link, ...(activeSection === 'about' ? styles.activeLink : {}) }}
-                    >
-                        {navbar.about}
-                    </a>
+                    <MagneticButton>
+                        <a
+                            href="#about"
+                            onClick={(e) => handleNavClick(e, 'about')}
+                            style={{ ...styles.link, ...(activeSection === 'about' ? styles.activeLink : {}) }}
+                        >
+                            {navbar.about}
+                        </a>
+                    </MagneticButton>
                 </li>
                 <li>
-                    <a
-                        href="#skills"
-                        onClick={(e) => handleNavClick(e, 'skills')}
-                        style={{ ...styles.link, ...(activeSection === 'skills' ? styles.activeLink : {}) }}
-                    >
-                        {navbar.skills}
-                    </a>
+                    <MagneticButton>
+                        <a
+                            href="#skills"
+                            onClick={(e) => handleNavClick(e, 'skills')}
+                            style={{ ...styles.link, ...(activeSection === 'skills' ? styles.activeLink : {}) }}
+                        >
+                            {navbar.skills}
+                        </a>
+                    </MagneticButton>
                 </li>
                 <li>
-                    <a
-                        href="#education"
-                        onClick={(e) => handleNavClick(e, 'education')}
-                        style={{ ...styles.link, ...(activeSection === 'education' ? styles.activeLink : {}) }}
-                    >
-                        {navbar.education}
-                    </a>
+                    <MagneticButton>
+                        <a
+                            href="#education"
+                            onClick={(e) => handleNavClick(e, 'education')}
+                            style={{ ...styles.link, ...(activeSection === 'education' ? styles.activeLink : {}) }}
+                        >
+                            {navbar.education}
+                        </a>
+                    </MagneticButton>
                 </li>
                 <li>
-                    <a
-                        href="#projects"
-                        onClick={(e) => handleNavClick(e, 'projects')}
-                        style={{ ...styles.link, ...(activeSection === 'projects' ? styles.activeLink : {}) }}
-                    >
-                        {navbar.projects}
-                    </a>
+                    <MagneticButton>
+                        <a
+                            href="#projects"
+                            onClick={(e) => handleNavClick(e, 'projects')}
+                            style={{ ...styles.link, ...(activeSection === 'projects' ? styles.activeLink : {}) }}
+                        >
+                            {navbar.projects}
+                        </a>
+                    </MagneticButton>
                 </li>
                 <li>
-                    <a
-                        href="#contact"
-                        onClick={(e) => handleNavClick(e, 'contact')}
-                        style={{ ...styles.link, ...(activeSection === 'contact' ? styles.activeLink : {}) }}
-                    >
-                        {navbar.contact}
-                    </a>
+                    <MagneticButton>
+                        <a
+                            href="#contact"
+                            onClick={(e) => handleNavClick(e, 'contact')}
+                            style={{ ...styles.link, ...(activeSection === 'contact' ? styles.activeLink : {}) }}
+                        >
+                            {navbar.contact}
+                        </a>
+                    </MagneticButton>
                 </li>
             </ul>
         </nav>
@@ -145,6 +150,8 @@ const styles = {
         fontSize: '1rem',
         transition: 'color 0.3s ease, text-shadow 0.3s ease',
         position: 'relative',
+        display: 'block', // Ensure block for magnetic effect
+        padding: '0.5rem', // Add padding for hit area
     },
     activeLink: {
         color: '#646cff',

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import FocusCard from './FocusCard';
+import MagneticButton from './MagneticButton';
 
 const Contact = () => {
     const { content } = useLanguage();
@@ -11,10 +12,18 @@ const Contact = () => {
                 <h2 style={styles.heading}>{contact.title}</h2>
                 <FocusCard style={styles.card}>
                     <div style={styles.links}>
-                        <a href={`mailto:${contact.email}`} style={styles.button}>{contact.emailButton}</a>
-                        <a href={contact.github} target="_blank" rel="noopener noreferrer" style={styles.button}>GitHub</a>
-                        <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" style={styles.button}>LinkedIn</a>
-                        <a href={contact.whatsapp} target="_blank" rel="noopener noreferrer" style={styles.button}>WhatsApp</a>
+                        <MagneticButton>
+                            <a href={`mailto:${contact.email}`} style={styles.button}>{contact.emailButton}</a>
+                        </MagneticButton>
+                        <MagneticButton>
+                            <a href={contact.github} target="_blank" rel="noopener noreferrer" style={styles.button}>GitHub</a>
+                        </MagneticButton>
+                        <MagneticButton>
+                            <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" style={styles.button}>LinkedIn</a>
+                        </MagneticButton>
+                        <MagneticButton>
+                            <a href={contact.whatsapp} target="_blank" rel="noopener noreferrer" style={styles.button}>WhatsApp</a>
+                        </MagneticButton>
                     </div>
                 </FocusCard>
             </div>
