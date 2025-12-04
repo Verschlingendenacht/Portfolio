@@ -1,5 +1,6 @@
 import { useLanguage } from '../context/LanguageContext';
 import TiltCard from './TiltCard';
+import FocusCard from './FocusCard';
 
 const Skills = () => {
     const { content } = useLanguage();
@@ -8,13 +9,15 @@ const Skills = () => {
         <section id="skills" style={styles.section}>
             <div style={styles.container}>
                 <h2 style={styles.heading}>{skills.title}</h2>
-                <div style={styles.grid}>
-                    {skills.items.map((skill, index) => (
-                        <TiltCard key={index} style={styles.skillCard}>
-                            {skill}
-                        </TiltCard>
-                    ))}
-                </div>
+                <FocusCard style={styles.card}>
+                    <div style={styles.grid}>
+                        {skills.items.map((skill, index) => (
+                            <TiltCard key={index} style={styles.skillCard}>
+                                {skill}
+                            </TiltCard>
+                        ))}
+                    </div>
+                </FocusCard>
             </div>
         </section>
     );
@@ -22,14 +25,9 @@ const Skills = () => {
 
 const styles = {
     section: {
-        padding: '4rem 2rem',
-        // Glassmorphism styles
-        backgroundColor: 'rgba(36, 36, 36, 0.7)',
-        backdropFilter: 'blur(10px)',
+        padding: '2rem 2rem',
         color: '#fff',
-        margin: '2rem auto',
-        borderRadius: '16px',
-        border: '1px solid rgba(255, 255, 255, 0.1)',
+        margin: '0 auto',
         maxWidth: '1200px',
     },
     container: {
@@ -39,7 +37,17 @@ const styles = {
     },
     heading: {
         fontSize: '2.5rem',
-        marginBottom: '2rem',
+        marginBottom: '0.5rem',
+        textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+    },
+    card: {
+        // Glassmorphism styles moved here
+        backgroundColor: 'rgba(36, 36, 36, 0.7)',
+        backdropFilter: 'blur(10px)',
+        borderRadius: '16px',
+        border: '1px solid rgba(255, 255, 255, 0.1)',
+        padding: '2rem',
+        boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
     },
     grid: {
         display: 'flex',

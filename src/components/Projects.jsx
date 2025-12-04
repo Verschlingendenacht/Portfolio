@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useGitHubProjects } from '../hooks/useGitHubProjects';
 import TiltCard from './TiltCard';
+import FocusCard from './FocusCard';
 
 const Projects = () => {
     const { content } = useLanguage();
@@ -35,70 +36,72 @@ const Projects = () => {
             <div style={styles.container}>
                 <h2 style={styles.heading}>{projects.title}</h2>
 
-                <div style={styles.searchContainer}>
-                    <input
-                        type="text"
-                        placeholder={projects.searchPlaceholder}
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        style={styles.searchInput}
-                    />
-                </div>
-
-                {loading && <p style={styles.loading}>Loading projects...</p>}
-                {error && <p style={styles.error}>Error loading projects: {error}</p>}
-
-                {!loading && !error && filteredProjects.length === 0 ? (
-                    <div style={styles.emptyState}>
-                        <p>{searchTerm ? "No matching projects found." : projects.emptyState}</p>
+                <FocusCard style={styles.card}>
+                    <div style={styles.searchContainer}>
+                        <input
+                            type="text"
+                            placeholder={projects.searchPlaceholder}
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            style={styles.searchInput}
+                        />
                     </div>
-                ) : (
-                    <div style={styles.carouselWrapper}>
-                        {filteredProjects.length > 3 && (
-                            <button onClick={() => scroll('left')} style={{ ...styles.arrow, ...styles.arrowLeft }} aria-label="Scroll Left">
-                                &#10094;
-                            </button>
-                        )}
 
-                        <div style={styles.carousel} ref={scrollContainerRef}>
-                            {filteredProjects.map((repo) => (
-                                <a
-                                    key={repo.id}
-                                    href={repo.html_url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    style={styles.cardLink}
-                                >
-                                    <TiltCard style={{ ...styles.card, height: '100%' }} className="js-project-card">
-                                        <h3 style={styles.projectTitle}>{repo.name}</h3>
-                                        <p style={styles.projectDesc}>{repo.description}</p>
+                    {loading && <p style={styles.loading}>Loading projects...</p>}
+                    {error && <p style={styles.error}>Error loading projects: {error}</p>}
 
-                                        <div style={styles.stats}>
-                                            <span style={styles.statItem}>⭐ {repo.stargazers_count}</span>
-                                            <span style={styles.statItem}>🍴 {repo.forks_count}</span>
-                                            <span style={styles.statItem}>🐛 {repo.open_issues_count}</span>
-                                        </div>
-
-                                        <div style={styles.meta}>
-                                            <span style={styles.language}>
-                                                {repo.languages && repo.languages.length > 0
-                                                    ? repo.languages.join(', ')
-                                                    : repo.language}
-                                            </span>
-                                            <span style={styles.date}>{new Date(repo.updated_at).toLocaleDateString()}</span>
-                                        </div>
-                                    </TiltCard>
-                                </a>
-                            ))}
+                    {!loading && !error && filteredProjects.length === 0 ? (
+                        <div style={styles.emptyState}>
+                            <p>{searchTerm ? "No matching projects found." : projects.emptyState}</p>
                         </div>
+                    ) : (
+                        <div style={styles.carouselWrapper}>
+                            {filteredProjects.length > 3 && (
+                                <button onClick={() => scroll('left')} style={{ ...styles.arrow, ...styles.arrowLeft }} aria-label="Scroll Left">
+                                    &#10094;
+                                </button>
+                            )}
 
-                        {filteredProjects.length > 3 && (
-                            <button onClick={() => scroll('right')} style={{ ...styles.arrow, ...styles.arrowRight }} aria-label="Scroll Right">
-                                &#10095;
-                            </button>
-                        )}
-                    </div>
-                )}
+                            <div style={styles.carousel} ref={scrollContainerRef}>
+                                {filteredProjects.map((repo) => (
+                                    <a
+                                        key={repo.id}
+                                        href={repo.html_url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        style={styles.cardLink}
+                                    >
+                                        <TiltCard style={{ ...styles.projectCard, height: '100%' }} className="js-project-card">
+                                            <h3 style={styles.projectTitle}>{repo.name}</h3>
+                                            <p style={styles.projectDesc}>{repo.description}</p>
+
+                                            <div style={styles.stats}>
+                                                <span style={styles.statItem}>⭐ {repo.stargazers_count}</span>
+                                                <span style={styles.statItem}>🍴 {repo.forks_count}</span>
+                                                <span style={styles.statItem}>🐛 {repo.open_issues_count}</span>
+                                            </div>
+
+                                            <div style={styles.meta}>
+                                                <span style={styles.language}>
+                                                    {repo.languages && repo.languages.length > 0
+                                                        ? repo.languages.join(', ')
+                                                        : repo.language}
+                                                </span>
+                                                <span style={styles.date}>{new Date(repo.updated_at).toLocaleDateString()}</span>
+                                            </div>
+                                        </TiltCard>
+                                    </a>
+                                ))}
+                            </div>
+
+                            {filteredProjects.length > 3 && (
+                                <button onClick={() => scroll('right')} style={{ ...styles.arrow, ...styles.arrowRight }} aria-label="Scroll Right">
+                                    &#10095;
+                                </button>
+                            )}
+                        </div>
+                    )}
+                </FocusCard>
             </div>
         </section>
     );
@@ -106,14 +109,9 @@ const Projects = () => {
 
 const styles = {
     section: {
-        padding: '4rem 2rem',
-        // Glassmorphism styles
-        backgroundColor: 'rgba(42, 42, 42, 0.7)',
-        backdropFilter: 'blur(10px)',
+        padding: '2rem 2rem',
         color: '#fff',
-        margin: '2rem auto',
-        borderRadius: '16px',
-        border: '1px solid rgba(255, 255, 255, 0.1)',
+        margin: '0 auto',
         maxWidth: '1200px',
     },
     container: {
@@ -123,7 +121,8 @@ const styles = {
     },
     heading: {
         fontSize: '2.5rem',
-        marginBottom: '2rem',
+        marginBottom: '0.5rem',
+        textShadow: '0 2px 4px rgba(0,0,0,0.3)',
     },
     searchContainer: {
         marginBottom: '2rem',
@@ -168,7 +167,7 @@ const styles = {
         gap: '2rem',
         overflowX: 'auto',
         scrollBehavior: 'smooth',
-        padding: '1rem 1rem 3rem 1rem', // Increased padding to prevent clipping
+        padding: '1rem 1rem 3rem 1rem',
         scrollbarWidth: 'none', // Firefox
         msOverflowStyle: 'none', // IE/Edge
         width: '100%',
@@ -201,13 +200,22 @@ const styles = {
     cardLink: {
         textDecoration: 'none',
         color: 'inherit',
-        display: 'flex', // Changed to flex to ensure height behavior
+        display: 'flex',
         flexDirection: 'column',
         minWidth: '300px',
         maxWidth: '300px',
-        height: 'auto', // Allow it to grow
+        height: 'auto',
     },
     card: {
+        // Glassmorphism styles moved here
+        backgroundColor: 'rgba(42, 42, 42, 0.7)',
+        backdropFilter: 'blur(10px)',
+        borderRadius: '16px',
+        border: '1px solid rgba(255, 255, 255, 0.1)',
+        padding: '2rem',
+        boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+    },
+    projectCard: {
         backgroundColor: 'rgba(255, 255, 255, 0.05)',
         padding: '1.5rem',
         borderRadius: '12px',

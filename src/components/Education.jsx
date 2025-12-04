@@ -1,4 +1,6 @@
 import { useLanguage } from '../context/LanguageContext';
+import TiltCard from './TiltCard';
+import FocusCard from './FocusCard';
 
 const Education = () => {
     const { content } = useLanguage();
@@ -8,15 +10,17 @@ const Education = () => {
         <section id="education" style={styles.section}>
             <div style={styles.container}>
                 <h2 style={styles.heading}>{education.title}</h2>
-                <div style={styles.grid}>
-                    {education.items.map((item, index) => (
-                        <div key={index} style={styles.card}>
-                            <h3 style={styles.degree}>{item.degree}</h3>
-                            <h4 style={styles.institution}>{item.institution}</h4>
-                            <span style={styles.period}>{item.period}</span>
-                        </div>
-                    ))}
-                </div>
+                <FocusCard style={styles.card}>
+                    <div style={styles.grid}>
+                        {education.items.map((item, index) => (
+                            <TiltCard key={index} style={styles.cardItem}>
+                                <h3 style={styles.degree}>{item.degree}</h3>
+                                <h4 style={styles.institution}>{item.institution}</h4>
+                                <span style={styles.period}>{item.period}</span>
+                            </TiltCard>
+                        ))}
+                    </div>
+                </FocusCard>
             </div>
         </section>
     );
@@ -24,14 +28,9 @@ const Education = () => {
 
 const styles = {
     section: {
-        padding: '4rem 2rem',
-        // Glassmorphism styles
-        backgroundColor: 'rgba(36, 36, 36, 0.7)',
-        backdropFilter: 'blur(10px)',
+        padding: '2rem 2rem',
         color: '#fff',
-        margin: '2rem auto',
-        borderRadius: '16px',
-        border: '1px solid rgba(255, 255, 255, 0.1)',
+        margin: '0 auto',
         maxWidth: '1200px',
     },
     container: {
@@ -41,14 +40,24 @@ const styles = {
     },
     heading: {
         fontSize: '2.5rem',
-        marginBottom: '2rem',
+        marginBottom: '0.5rem',
+        textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+    },
+    card: {
+        // Glassmorphism styles moved here
+        backgroundColor: 'rgba(36, 36, 36, 0.7)',
+        backdropFilter: 'blur(10px)',
+        borderRadius: '16px',
+        border: '1px solid rgba(255, 255, 255, 0.1)',
+        padding: '2rem',
+        boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
     },
     grid: {
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
         gap: '2rem',
     },
-    card: {
+    cardItem: {
         backgroundColor: 'rgba(255, 255, 255, 0.05)',
         padding: '2rem',
         borderRadius: '12px',
