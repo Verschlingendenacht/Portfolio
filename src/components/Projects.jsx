@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useGitHubProjects } from '../hooks/useGitHubProjects';
+import TiltCard from './TiltCard';
 
 const Projects = () => {
     const { content } = useLanguage();
@@ -68,7 +69,7 @@ const Projects = () => {
                                     rel="noopener noreferrer"
                                     style={styles.cardLink}
                                 >
-                                    <div style={styles.card}>
+                                    <TiltCard style={{ ...styles.card, height: '100%' }} className="js-project-card">
                                         <h3 style={styles.projectTitle}>{repo.name}</h3>
                                         <p style={styles.projectDesc}>{repo.description}</p>
 
@@ -86,7 +87,7 @@ const Projects = () => {
                                             </span>
                                             <span style={styles.date}>{new Date(repo.updated_at).toLocaleDateString()}</span>
                                         </div>
-                                    </div>
+                                    </TiltCard>
                                 </a>
                             ))}
                         </div>
@@ -218,7 +219,9 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         transition: 'transform 0.2s ease, background-color 0.2s ease',
-        border: '1px solid rgba(255, 255, 255, 0.05)',
+        borderWidth: '1px',
+        borderStyle: 'solid',
+        borderColor: 'rgba(255, 255, 255, 0.05)',
         overflow: 'hidden',
         transform: 'translateZ(0)', // Fix for border-radius clipping with backdrop-filter
     },

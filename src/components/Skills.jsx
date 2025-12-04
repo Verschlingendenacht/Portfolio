@@ -1,4 +1,5 @@
 import { useLanguage } from '../context/LanguageContext';
+import TiltCard from './TiltCard';
 
 const Skills = () => {
     const { content } = useLanguage();
@@ -9,9 +10,9 @@ const Skills = () => {
                 <h2 style={styles.heading}>{skills.title}</h2>
                 <div style={styles.grid}>
                     {skills.items.map((skill, index) => (
-                        <div key={index} style={styles.skillCard}>
+                        <TiltCard key={index} style={styles.skillCard}>
                             {skill}
-                        </div>
+                        </TiltCard>
                     ))}
                 </div>
             </div>

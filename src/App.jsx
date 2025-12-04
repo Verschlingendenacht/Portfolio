@@ -10,6 +10,8 @@ import ParticleBackground from './components/ParticleBackground';
 import CursorFollower from './components/CursorFollower';
 import ClickEffect from './components/ClickEffect';
 import ScrollReveal from './components/ScrollReveal';
+import ScrollProgress from './components/ScrollProgress';
+import BackToTop from './components/BackToTop';
 
 import { useEffect } from 'react';
 import { LanguageProvider } from './context/LanguageContext';
@@ -23,6 +25,7 @@ function App() {
     return (
         <LanguageProvider>
             <div className="app">
+                <ScrollProgress />
                 <ClickEffect />
                 <CursorFollower />
                 <ParticleBackground />
@@ -35,6 +38,7 @@ function App() {
                 <ScrollReveal><Contact /></ScrollReveal>
                 <Footer />
                 <LanguageToggle />
+                <BackToTop />
             </div>
         </LanguageProvider>
     );

@@ -15,18 +15,18 @@ const CursorFollower = () => {
         y: -100,
         width: 32,
         height: 32,
-        radius: 50, // % or px depending on context, handled in render
+        radius: 50,
         hovering: false
     });
 
     useEffect(() => {
-        // Only enable on devices that support hover
         const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
         if (isTouchDevice) return;
 
         const checkHover = (x, y) => {
             const target = document.elementFromPoint(x, y);
             if (!target) return;
+
 
             const clickable = target.closest('a') ||
                 target.closest('button') ||
@@ -60,7 +60,6 @@ const CursorFollower = () => {
                     parent = parent.parentElement;
                 }
 
-                // Clip against viewport
                 const viewportWidth = window.innerWidth;
                 const viewportHeight = window.innerHeight;
 
@@ -81,14 +80,16 @@ const CursorFollower = () => {
                 targetState.current.width = visibleWidth + 20;
                 targetState.current.height = visibleHeight + 10;
                 targetState.current.radius = borderRadius > 0 ? borderRadius + 5 : 8;
+                targetState.current.rotateX = 0;
+                targetState.current.rotateY = 0;
+                targetState.current.scale = 1;
 
                 if (cursorRingRef.current) {
                     cursorRingRef.current.classList.add('active');
-                    // If hovering navbar, bring ring to front
                     if (clickable.closest('nav')) {
                         cursorRingRef.current.style.zIndex = '10001';
                     } else {
-                        cursorRingRef.current.style.zIndex = ''; // Revert to CSS (9999)
+                        cursorRingRef.current.style.zIndex = '';
                     }
                 }
             } else {
@@ -96,25 +97,24 @@ const CursorFollower = () => {
                 targetState.current.width = 32;
                 targetState.current.height = 32;
                 targetState.current.radius = 50;
-
-                // If not hovering, target is mouse position
                 targetState.current.x = cursorPos.current.x;
                 targetState.current.y = cursorPos.current.y;
+                targetState.current.rotateX = 0;
+                targetState.current.rotateY = 0;
+                targetState.current.scale = 1;
 
                 if (cursorRingRef.current) {
                     cursorRingRef.current.classList.remove('active');
-                    cursorRingRef.current.style.zIndex = ''; // Revert to CSS
+                    cursorRingRef.current.style.zIndex = '';
                 }
             }
         };
 
         const onMouseMove = (e) => {
             cursorPos.current = { x: e.clientX, y: e.clientY };
-
             if (cursorDotRef.current) {
                 cursorDotRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
             }
-
             checkHover(e.clientX, e.clientY);
         };
 
@@ -127,11 +127,9 @@ const CursorFollower = () => {
         document.addEventListener('mousemove', onMouseMove);
         document.addEventListener('scroll', onScroll, { passive: true });
 
-        // Animation loop for the follower ring
         let animationFrameId;
 
         const animate = () => {
-            // Linear interpolation (lerp) for smooth following
             const lerpFactor = 0.15;
 
             if (!targetState.current.hovering) {
@@ -145,7 +143,15 @@ const CursorFollower = () => {
             followerSize.current.height += (targetState.current.height - followerSize.current.height) * lerpFactor;
 
             if (cursorRingRef.current) {
-                cursorRingRef.current.style.transform = `translate3d(${followerPos.current.x}px, ${followerPos.current.y}px, 0) translate(-50%, -50%)`;
+                const scale = targetState.current.scale || 1;
+                cursorRingRef.current.style.transform = `
+                    translate3d(${followerPos.current.x}px, ${followerPos.current.y}px, 0) 
+                    translate(-50%, -50%) 
+                    perspective(1000px) 
+                    rotateX(${targetState.current.rotateX || 0}deg) 
+                    rotateY(${targetState.current.rotateY || 0}deg)
+                    scale3d(${scale}, ${scale}, ${scale})
+                `;
                 cursorRingRef.current.style.width = `${followerSize.current.width}px`;
                 cursorRingRef.current.style.height = `${followerSize.current.height}px`;
 
