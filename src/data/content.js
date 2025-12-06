@@ -10,26 +10,26 @@ export const translations = {
             contact: "Contact"
         },
         hero: {
-            title: "Hello, I'm [Name]",
-            subtitle: "Junior Developer | Problem Solver | Tech Enthusiast",
+            title: "Hello, I'm Alejandro",
+            subtitle: "Software Developer | Problem Solver | Tech Enthusiast",
             description: "I build accessible, pixel-perfect, and performant web experiences.",
         },
         about: {
             title: "About Me",
-            description: "I'm a passionate junior developer looking for my first role. I love learning new technologies and building things that live on the internet. When I'm not coding, I'm probably reading or gaming.",
+            description: "I'm a passionate developer looking for my first role. I love learning new technologies and building things that live on the internet. When I'm not coding, I'm probably reading or studying astronomy.",
         },
         education: {
             title: "Education",
             items: [
                 {
-                    degree: "Computer Science Degree",
-                    institution: "University of Technology",
-                    period: "2020 - 2024"
+                    degree: "Programming Skills & Web Development",
+                    institution: "Universidad del Norte",
+                    period: "2021 - 2022"
                 },
                 {
-                    degree: "Full Stack Web Development Bootcamp",
-                    institution: "Tech Academy",
-                    period: "2024"
+                    degree: "Data Science Engineering",
+                    institution: "ITM Instituto Tecnologico Metropolitano",
+                    period: "2024 - currently"
                 }
             ]
         },
@@ -39,9 +39,20 @@ export const translations = {
                 "HTML",
                 "CSS",
                 "JavaScript",
+                "TypeScript",
+                "Java",
+                "Python",
+                "Power Bi",
                 "React",
+                "Node.js",
+                "Spring/Spring Boot",
                 "Git",
-                "Responsive Design"
+                "Scrum/Agile",
+                "Responsive Design",
+                "Data Processing",
+                "Data Visualization",
+                "Backend Architecture",
+                "API Development & Integration"
             ]
         },
         projects: {
@@ -50,22 +61,19 @@ export const translations = {
             emptyState: "Currently working on some exciting projects. Check back soon!",
             items: [
                 "Verschlingendenacht/blog",
-                "facebook/react",
-                "vuejs/vue",
-                "twbs/bootstrap",
-                "airbnb/javascript"
+                "Verschlingendenacht/Portfolio"
             ]
         },
         contact: {
             title: "Get In Touch",
             emailButton: "Email Me",
-            email: "johndoe.email@example.com",
-            github: "https://github.com/johndoe",
+            email: "nilzon.gomez17@gmail.com",
+            github: "https://github.com/Verschlingendenacht",
             linkedin: "https://linkedin.com/in/johndoe",
-            whatsapp: "https://wa.me/YOUR_NUMBER",
+            whatsapp: "https://wa.me/573219628500",
         },
         footer: {
-            copyright: "© 2024 [Name]. All rights reserved."
+            copyright: "© 2025 Alejandro's Workshop. All rights reserved."
         }
     },
     es: {
@@ -79,26 +87,26 @@ export const translations = {
             contact: "Contacto"
         },
         hero: {
-            title: "Hola, soy [Nombre]",
-            subtitle: "Desarrollador Junior | Solucionador de Problemas | Entusiasta Tech",
+            title: "Hola, soy Alejandro",
+            subtitle: "Desarrollador de Software | Solucionador de Problemas | Entusiasta Tech",
             description: "Construyo experiencias web accesibles, perfectas en píxeles y de alto rendimiento.",
         },
         about: {
             title: "Sobre Mí",
-            description: "Soy un desarrollador junior apasionado buscando mi primer rol. Me encanta aprender nuevas tecnologías y construir cosas que viven en internet. Cuando no estoy programando, probablemente estoy leyendo o jugando.",
+            description: "Soy un desarrollador apasionado buscando mi primer rol. Me encanta aprender nuevas tecnologías y construir cosas que viven en internet. Cuando no estoy programando, probablemente estoy leyendo o estudiando astronomía.",
         },
         education: {
             title: "Educación",
             items: [
                 {
-                    degree: "Grado en Ciencias de la Computación",
-                    institution: "Universidad Tecnológica",
-                    period: "2020 - 2024"
+                    degree: "Habilidades en Programación & Desarrollo Web",
+                    institution: "Universidad del Norte",
+                    period: "2021 - 2022"
                 },
                 {
-                    degree: "Bootcamp de Desarrollo Web Full Stack",
-                    institution: "Tech Academy",
-                    period: "2024"
+                    degree: "Ingeniería en Ciencia de Datos",
+                    institution: "ITM Instituto Tecnologico Metropolitano",
+                    period: "2024 - Actualidad"
                 }
             ]
         },
@@ -108,9 +116,20 @@ export const translations = {
                 "HTML",
                 "CSS",
                 "JavaScript",
+                "TypeScript",
+                "Java",
+                "Python",
+                "Power Bi",
                 "React",
+                "Node.js",
+                "Spring/Spring Boot",
                 "Git",
-                "Diseño Responsivo"
+                "Scrum/Agile",
+                "Diseño Responsivo",
+                "Procesamiento de Datos",
+                "Visualización de Datos",
+                "Arquitectura Backend",
+                "Desarrollo e Integración de APIs"
             ]
         },
         projects: {
@@ -119,22 +138,19 @@ export const translations = {
             emptyState: "Actualmente trabajando en proyectos emocionantes. ¡Vuelve pronto!",
             items: [
                 "Verschlingendenacht/blog",
-                "facebook/react",
-                "vuejs/vue",
-                "twbs/bootstrap",
-                "airbnb/javascript"
+                "Verschlingendenacht/Portfolio"
             ]
         },
         contact: {
             title: "Contáctame",
             emailButton: "Envíame un correo",
-            email: "johndoe.email@example.com",
-            github: "https://github.com/johndoe",
+            email: "nilzon.gomez17@gmail.com",
+            github: "https://github.com/Verschlingendenacht",
             linkedin: "https://linkedin.com/in/johndoe",
-            whatsapp: "https://wa.me/YOUR_NUMBER",
+            whatsapp: "https://wa.me/573219628500",
         },
         footer: {
-            copyright: "© 2024 [Nombre]. Todos los derechos reservados."
+            copyright: "© 2025 Alejandro's Workshop. Todos los derechos reservados."
         }
     }
 };
